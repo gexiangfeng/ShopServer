@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cn.webshop.dao.ProductMapper" >
-  <resultMap id="BaseResultMap" type="com.cn.webshop.pojo.Product" >
+  <resultMap id="BaseResultMap" type="com.cn.webshop.pojo.entity.Product" >
     <id column="product_id" property="productId" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="no" property="no" jdbcType="VARCHAR" />
@@ -43,7 +43,7 @@
     delete from product
     where product_id = #{productId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.cn.webshop.pojo.Product" >
+  <insert id="insert" parameterType="com.cn.webshop.pojo.entity.Product" >
     insert into product (product_id, name, no, 
       year, season, sex, 
       keywords, product_type_id, sell_type_id, 
@@ -59,7 +59,7 @@
       #{productStyleId,jdbcType=TINYINT}, #{productStoryId,jdbcType=TINYINT}, #{addTime,jdbcType=TIMESTAMP}, 
       #{modifyAdminId,jdbcType=INTEGER}, #{modifyTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.cn.webshop.pojo.Product" >
+  <insert id="insertSelective" parameterType="com.cn.webshop.pojo.entity.Product" >
     insert into product
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="productId != null" >
@@ -186,7 +186,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cn.webshop.pojo.Product" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.webshop.pojo.entity.Product" >
     update product
     <set >
       <if test="name != null" >
@@ -249,7 +249,7 @@
     </set>
     where product_id = #{productId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cn.webshop.pojo.Product" >
+  <update id="updateByPrimaryKey" parameterType="com.cn.webshop.pojo.entity.Product" >
     update product
     set name = #{name,jdbcType=VARCHAR},
       no = #{no,jdbcType=VARCHAR},

@@ -2,7 +2,7 @@
 
 App.controller('UserController', ['$scope', 'UserService', function($scope, UserService) {
           var self = this;
-          self.user={id:null,userName:'',address:'',email:''};
+          self.user={userId:null,name:'',employer:'',mobile:'',address:'',email:'',idcard:'',sex:'',birthday:'',regionProvinceId:'',regionCityId:'',regionCountryId:'',telephone:'',postCode:'',incomeMonth:'',job:'',hobby:''};
           self.users=[];
               
           self.fetchAllUsers = function(){
@@ -51,12 +51,12 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
           self.fetchAllUsers();
 
           self.submit = function() {
-              if(self.user.id===null){
+              if(self.user.userId===null || self.user.userId == undefined){
                   console.log('Saving New User', self.user);    
                   self.createUser(self.user);
               }else{
-                  self.updateUser(self.user, self.user.id);
-                  console.log('User updated with id ', self.user.id);
+                  self.updateUser(self.user, self.user.userId);
+                  console.log('User updated with id ', self.user.userId);
               }
               self.reset();
           };
@@ -64,7 +64,7 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
           self.edit = function(id){
               console.log('id to be edited', id);
               for(var i = 0; i < self.users.length; i++){
-                  if(self.users[i].id === id) {
+                  if(self.users[i].userId === id) {
                      self.user = angular.copy(self.users[i]);
                      break;
                   }
@@ -73,7 +73,7 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
               
           self.remove = function(id){
               console.log('id to be deleted', id);
-              if(self.user.id === id) {//clean form if the user to be deleted is shown there.
+              if(self.user.userId === id) {//clean form if the user to be deleted is shown there.
                  self.reset();
               }
               self.deleteUser(id);

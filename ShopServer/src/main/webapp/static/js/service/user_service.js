@@ -17,7 +17,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
 				},
 		    
 		    createUser: function(user){
-					return $http.post('http://localhost:8080/ShopServer/user', user)
+					return $http.post('http://localhost:8080/ShopServer/user/', user)
 							.then(
 									function(response){
 										return response.data;

@@ -1,49 +1,72 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cn.webshop.dao.IUserDao" >
-  <resultMap id="BaseResultMap" type="com.cn.webshop.pojo.User" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="user_name" property="userName" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
+  <resultMap id="BaseResultMap" type="com.cn.webshop.pojo.entity.User" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="employer" property="employer" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="region_province_id" property="regionProvinceId" jdbcType="INTEGER" />
+    <result column="region_city_id" property="regionCityId" jdbcType="INTEGER" />
+    <result column="region_country_id" property="regionCountryId" jdbcType="INTEGER" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="post_code" property="postCode" jdbcType="VARCHAR" />
+    <result column="income_month" property="incomeMonth" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="hobby" property="hobby" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_name, password, age,address,email
+    user_id, name, employer, mobile, address, email, idcard, sex, birthday, region_province_id, 
+    region_city_id, region_country_id, telephone, post_code, income_month, job, hobby
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from user
-    where id = #{id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </select>
-  <select id="selectAllUser" resultMap="BaseResultMap" >
+   <select id="selectAllUser" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
-    where id = #{id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.cn.webshop.pojo.User" >
-    insert into user (id, user_name, password, 
-      age,address,email)
-    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{age,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.cn.webshop.pojo.entity.User" >
+    insert into user (user_id, name, employer, 
+      mobile, address, email, 
+      idcard, sex, birthday, 
+      region_province_id, region_city_id, region_country_id, 
+      telephone, post_code, income_month, 
+      job, hobby)
+    values (#{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{employer,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{idcard,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{regionProvinceId,jdbcType=INTEGER}, #{regionCityId,jdbcType=INTEGER}, #{regionCountryId,jdbcType=INTEGER}, 
+      #{telephone,jdbcType=VARCHAR}, #{postCode,jdbcType=VARCHAR}, #{incomeMonth,jdbcType=VARCHAR}, 
+      #{job,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.cn.webshop.pojo.User" >
+  <insert id="insertSelective" parameterType="com.cn.webshop.pojo.entity.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
+      <if test="userId != null" >
+        user_id,
       </if>
-      <if test="userName != null" >
-        user_name,
+      <if test="name != null" >
+        name,
       </if>
-      <if test="password != null" >
-        password,
+      <if test="employer != null" >
+        employer,
+      </if>
+      <if test="mobile != null" >
+        mobile,
       </if>
       <if test="address != null" >
         address,
@@ -51,19 +74,52 @@
       <if test="email != null" >
         email,
       </if>
-      <if test="age != null" >
-        age,
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="regionProvinceId != null" >
+        region_province_id,
+      </if>
+      <if test="regionCityId != null" >
+        region_city_id,
+      </if>
+      <if test="regionCountryId != null" >
+        region_country_id,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="postCode != null" >
+        post_code,
+      </if>
+      <if test="incomeMonth != null" >
+        income_month,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="hobby != null" >
+        hobby,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
       </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
+      <if test="employer != null" >
+        #{employer,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
       </if>
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
@@ -71,33 +127,113 @@
       <if test="email != null" >
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="age != null" >
-        #{age,jdbcType=INTEGER},
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regionProvinceId != null" >
+        #{regionProvinceId,jdbcType=INTEGER},
+      </if>
+      <if test="regionCityId != null" >
+        #{regionCityId,jdbcType=INTEGER},
+      </if>
+      <if test="regionCountryId != null" >
+        #{regionCountryId,jdbcType=INTEGER},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeMonth != null" >
+        #{incomeMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null" >
+        #{hobby,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cn.webshop.pojo.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.webshop.pojo.entity.User" >
     update user
     <set >
-      <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
+      <if test="employer != null" >
+        employer = #{employer,jdbcType=VARCHAR},
       </if>
-      <if test="age != null" >
-        age = #{age,jdbcType=INTEGER},
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regionProvinceId != null" >
+        region_province_id = #{regionProvinceId,jdbcType=INTEGER},
+      </if>
+      <if test="regionCityId != null" >
+        region_city_id = #{regionCityId,jdbcType=INTEGER},
+      </if>
+      <if test="regionCountryId != null" >
+        region_country_id = #{regionCountryId,jdbcType=INTEGER},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        post_code = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeMonth != null" >
+        income_month = #{incomeMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null" >
+        hobby = #{hobby,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cn.webshop.pojo.User" >
+  <update id="updateByPrimaryKey" parameterType="com.cn.webshop.pojo.entity.User" >
     update user
-    set user_name = #{userName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      age = #{age,jdbcType=INTEGER},
+    set name = #{name,jdbcType=VARCHAR},
+      employer = #{employer,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+      email = #{email,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      region_province_id = #{regionProvinceId,jdbcType=INTEGER},
+      region_city_id = #{regionCityId,jdbcType=INTEGER},
+      region_country_id = #{regionCountryId,jdbcType=INTEGER},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      post_code = #{postCode,jdbcType=VARCHAR},
+      income_month = #{incomeMonth,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      hobby = #{hobby,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>
