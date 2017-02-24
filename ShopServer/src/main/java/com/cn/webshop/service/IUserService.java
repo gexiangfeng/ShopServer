@@ -2,7 +2,7 @@ package com.cn.webshop.service;
 
 import java.util.List;
 
-import com.cn.webshop.pojo.User;
+import com.cn.webshop.pojo.entity.User;
 
 public interface IUserService {
 	

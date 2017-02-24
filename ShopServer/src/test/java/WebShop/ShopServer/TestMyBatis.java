@@ -14,7 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.alibaba.fastjson.JSON;
-import com.cn.webshop.pojo.User;
+import com.cn.webshop.pojo.entity.User;
 import com.cn.webshop.service.IUserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)	

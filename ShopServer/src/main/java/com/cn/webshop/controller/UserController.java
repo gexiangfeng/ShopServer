@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.cn.webshop.pojo.User;
+import com.cn.webshop.pojo.entity.User;
 import com.cn.webshop.service.IUserService;
 
 @Controller

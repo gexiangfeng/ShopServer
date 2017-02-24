@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.webshop.dao.WarehouseMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.webshop.pojo.entity.Warehouse" >
+    <id column="warehouse_id" property="warehouseId" jdbcType="TINYINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    warehouse_id, name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Byte" >
+    select 
+    <include refid="Base_Column_List" />
+    from warehouse
+    where warehouse_id = #{warehouseId,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte" >
+    delete from warehouse
+    where warehouse_id = #{warehouseId,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="com.cn.webshop.pojo.entity.Warehouse" >
+    insert into warehouse (warehouse_id, name)
+    values (#{warehouseId,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.webshop.pojo.entity.Warehouse" >
+    insert into warehouse
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="warehouseId != null" >
+        warehouse_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="warehouseId != null" >
+        #{warehouseId,jdbcType=TINYINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.webshop.pojo.entity.Warehouse" >
+    update warehouse
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where warehouse_id = #{warehouseId,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.webshop.pojo.entity.Warehouse" >
+    update warehouse
+    set name = #{name,jdbcType=VARCHAR}
+    where warehouse_id = #{warehouseId,jdbcType=TINYINT}
+  </update>
+</mapper>

@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.cn.webshop.dao.IUserDao;
-import com.cn.webshop.pojo.User;
+import com.cn.webshop.pojo.entity.User;
 import com.cn.webshop.service.IUserService;
 
 @Service("userService")

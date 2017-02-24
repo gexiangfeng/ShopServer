@@ -1,4 +1,4 @@
-package com.cn.webshop.pojo;
+package com.cn.webshop.pojo.entity;
 
 public class User {
     private Integer id;

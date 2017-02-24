@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.webshop.dao.BrandMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.webshop.pojo.entity.Brand" >
+    <id column="brand_id" property="brandId" jdbcType="TINYINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    brand_id, name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Byte" >
+    select 
+    <include refid="Base_Column_List" />
+    from brand
+    where brand_id = #{brandId,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte" >
+    delete from brand
+    where brand_id = #{brandId,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="com.cn.webshop.pojo.entity.Brand" >
+    insert into brand (brand_id, name)
+    values (#{brandId,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.webshop.pojo.entity.Brand" >
+    insert into brand
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="brandId != null" >
+        #{brandId,jdbcType=TINYINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.webshop.pojo.entity.Brand" >
+    update brand
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where brand_id = #{brandId,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.webshop.pojo.entity.Brand" >
+    update brand
+    set name = #{name,jdbcType=VARCHAR}
+    where brand_id = #{brandId,jdbcType=TINYINT}
+  </update>
+</mapper>

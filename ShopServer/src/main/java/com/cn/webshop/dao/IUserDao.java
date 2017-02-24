@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Repository;
 
-import com.cn.webshop.pojo.User;
+import com.cn.webshop.pojo.entity.User;
 
 @Repository(value="IUserDao")
 public interface IUserDao {
